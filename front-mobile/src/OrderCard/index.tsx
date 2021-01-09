@@ -1,22 +1,53 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Platform } from 'react-native';
+import { Order } from '../types';
+import dayjs from 'dayjs';
+import 'dayjs/locale/pt-br.js'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import "intl";
+import "intl/locale-data/jsonp/pt-BR.js";
 
-export default function OrderCard() {
+if (Platform.OS === "android") {
+    if (typeof (Intl as any).__disableRegExpRestore === "function") {
+        (Intl as any).__disableRegExpRestore();
+    }
+}
+
+dayjs.locale('pt-br');
+dayjs.extend(relativeTime);
+
+type Props = {
+   order: Order;
+}
+
+function dateFromNow(date: string) {
+   return dayjs(date).fromNow();
+}
+
+export function formatPrice(price: number) {
+   const formatter = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+      minimumFractionDigits: 2
+   })
+
+   return formatter.format(price);
+}
+
+export default function OrderCard({ order }: Props) {
    return (
-      <>
-         <View style={styles.container}>
-            <View style={styles.header}>
-               <Text style={styles.orderName}>Pedido 1</Text>
-               <Text style={styles.orderPrice}>RS 50,00</Text>
-            </View>
-            <Text style={styles.text}>Há 30min</Text>
-            <View style={styles.productsList}>
-               <Text style={styles.text}>Pizza Calabresa</Text>
-               <Text style={styles.text}>Pizza Calabresa</Text>
-               <Text style={styles.text}>Pizza Calabresa</Text>
-            </View>
+      <View style={styles.container}>
+         <View style={styles.header}>
+            <Text style={styles.orderName}>Pedido {order.id}</Text>
+            <Text style={styles.orderPrice}>{formatPrice(order.total)}</Text>
          </View>
-      </>
+         <Text style={styles.text}>{dateFromNow(order.moment)}</Text>
+         <View style={styles.productsList}>
+            {order.products.map(product => (
+               <Text key={product.id} style={styles.text}>{product.name}</Text>
+            ))}
+         </View>
+      </View>
    );
 }
 
@@ -34,28 +65,28 @@ const styles = StyleSheet.create({
       shadowRadius: 20,
       borderRadius: 10,
       elevation: 5
-    },
-    header: {
+   },
+   header: {
       flexDirection: 'row',
       justifyContent: 'space-between'
-    },
-    text: {
+   },
+   text: {
       fontWeight: 'normal',
       fontSize: 14,
       lineHeight: 19,
       letterSpacing: -0.24,
       color: '#9E9E9E',
       fontFamily: 'OpenSans_400Regular'
-    },
-    orderName: {
+   },
+   orderName: {
       fontWeight: 'bold',
       fontSize: 18,
       lineHeight: 25,
       letterSpacing: -0.24,
       color: '#263238',
       fontFamily: 'OpenSans_700Bold'
-    },
-    orderPrice: {
+   },
+   orderPrice: {
       fontWeight: 'bold',
       fontSize: 18,
       lineHeight: 25,
@@ -63,11 +94,11 @@ const styles = StyleSheet.create({
       letterSpacing: -0.24,
       color: '#DA5C5C',
       fontFamily: 'OpenSans_700Bold'
-    },
-    productsList: {
+   },
+   productsList: {
       borderTopColor: '#E6E6E6',
       borderTopWidth: 1,
       marginTop: 20,
       paddingTop: 15
-    }
+   }
 });
