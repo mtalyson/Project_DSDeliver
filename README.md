@@ -24,9 +24,9 @@ https://talyson-moreira-sds2.netlify.app/
 ### - Tela Inicial, Tela de Pedidos e Tela de Confirmação
 
 <p float="left">
-  <img src="https://user-images.githubusercontent.com/45837182/104103533-61ccc280-5281-11eb-82ab-6559538279a3.jpeg" width="296">
-  <img src="https://user-images.githubusercontent.com/45837182/104103553-76a95600-5281-11eb-9234-a7a071a2fe34.jpeg" width="296">
-  <img src="https://user-images.githubusercontent.com/45837182/104103565-82951800-5281-11eb-807b-bedc28ea31a5.jpeg" width="296">
+  <img src="https://user-images.githubusercontent.com/45837182/104103533-61ccc280-5281-11eb-82ab-6559538279a3.jpeg" width="250">
+  <img src="https://user-images.githubusercontent.com/45837182/104103553-76a95600-5281-11eb-9234-a7a071a2fe34.jpeg" width="250">
+  <img src="https://user-images.githubusercontent.com/45837182/104103565-82951800-5281-11eb-807b-bedc28ea31a5.jpeg" width="250">
 </p>
 
 ## Inicializando um Projeto Local
