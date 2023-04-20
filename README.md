@@ -4,10 +4,6 @@ Aplicação de uma plataforma de Delivery construída com back-end em JAVA com S
 com conexão com a nuvem atraves da plataforma Heroku. Front-end Web desenvolvido com ReactJS e integração com a API de mapas Leaftlet,
 disponibilizado online através da plataforma Netlify. Front-end Mobile desenvolvido com React Native.
 
-### Link para acessar plataforma web
-
-https://talyson-moreira-sds2.netlify.app/
-
 ## Screenshots: Web-Desktop (Visão do Cliente)
 
 ### - Tela Inicial
